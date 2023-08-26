@@ -2,11 +2,28 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CadastroApplication",
+            "request": "launch",
+            "mainClass": "br.edu.iftm.tspi.cadastro.CadastroApplication",
+            "projectName": ""
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-HelloApplication<hello>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "br.edu.iftm.tspi.hello.HelloApplication",
             "projectName": "hello",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-CadastroApplication<cadastro>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.edu.iftm.tspi.cadastro.CadastroApplication",
+            "projectName": "cadastro",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
