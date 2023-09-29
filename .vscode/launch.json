@@ -26,6 +26,26 @@
             "projectName": "cadastro",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-FormularioApplication<formulario>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.edu.iftm.tspi.formulario.FormularioApplication",
+            "projectName": "formulario",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ContatosApplication<contatos>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.edu.iftm.contact.contatos.ContatosApplication",
+            "projectName": "contatos",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

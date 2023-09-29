@@ -5,37 +5,20 @@
     </head>
 
     <body>
-
-        <form method="POST" action="cadastroResourcePost">
+        <form method="POST" action="cadastroUpdate" th:object="${cadastro}">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Endereço de Email</label>
-                <input type="email" class="form-control" name="inputEmail" aria-describedby="emailHelp">
+                <input type="email" th:field="*{inputEmail}" class="form-control" name="inputEmail" aria-describedby="emailHelp">
                 <div id="emailHelp" class="form-text">Não compartilhamos seu email com ninguém.</div>
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput" class="form-label">Nome</label>
-                <input type="text" class="form-control" name="inputNome" placeholder="Insira o Nome">
+                <input type="text" class="form-control" th:field="*{inputNome}" name="inputNome" placeholder="Insira o Nome">
             </div>
             
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
 
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Nome</th>
-                <th scope="col">Email</th>
-              </tr>
-            </thead>
-            <tbody>
-               <tr th:each="cadastro : ${cadastros}">
-                    <td th:text="${cadastro.inputNome}"></td>
-                    <td th:text="${cadastro.inputEmail}"></td>
-                    <td><a th:href="@{/cadastros/{cadastroId}/edit(cadastroId=${cadastro.inputEmail})}">Edit</a></td>
-               </tr>
-            </tbody>
-          </table>
-        
     </body>
 
 </html>
