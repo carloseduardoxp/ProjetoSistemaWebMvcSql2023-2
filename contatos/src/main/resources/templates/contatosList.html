@@ -1,8 +1,8 @@
 <html>
-    <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    </head>
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</head>
 
     <body>
 
@@ -28,6 +28,21 @@
                </tr>
             </tbody>
           </table>
+
+          <form method="POST" action="contatos" th:object="${contato}">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Endereço de Email</label>
+                <input type="email" th:field="*{email}" class="form-control" name="email" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">Não compartilhamos seu email com ninguém.</div>
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Nome</label>
+                <input type="text" class="form-control" th:field="*{nome}" name="nome" placeholder="Insira o Nome">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+
         
     </body>
 

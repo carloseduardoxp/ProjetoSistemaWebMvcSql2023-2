@@ -41,6 +41,18 @@ public class ContatoDao {
 
 		db.update(sql,new Object[]{contato.getEmail(),contato.getNome()});
 	}
+
+	public void updateContato(Contato contato) {
+		String sql = "update tb_contato set nome = ? where email = ?";
+
+		db.update(sql,new Object[]{contato.getNome(),contato.getEmail()});
+	}
+
+	public void deleteContato(String email) {
+		String sql = "delete from tb_contato where email = ?";
+
+		db.update(sql,new Object[]{email});
+	}
 	
 
 
