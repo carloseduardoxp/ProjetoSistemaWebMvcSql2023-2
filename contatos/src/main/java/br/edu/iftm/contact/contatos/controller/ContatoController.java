@@ -25,7 +25,13 @@ public class ContatoController {
 
     @PostMapping("contatos")
     public String inserirContatos(Contato contato,Model model) {
-        dao.inserirContato(contato);
+        Contato contatoDb = dao.getContato(contato.getEmail());
+        if (contatoDb == null) {
+            dao.inserirContato(contato);
+        } else {
+            dao.updateContato(contato);
+        }
+        
         return getContatos(model);
     }
 
@@ -33,6 +39,20 @@ public class ContatoController {
     public String getContatos(@RequestParam(value = "nome", required = true) String nome, Model model) {
         model.addAttribute("contatos",dao.getContatos(nome));
         model.addAttribute("contato",new Contato());
+        return "contatosList";
+    }
+
+    @RequestMapping("excluirContato")
+    public String deleteContato(@RequestParam(value = "email", required = true) String email, Model model) {
+        dao.deleteContato(email);
+        return getContatos(model);
+    }
+
+    @RequestMapping("editarContato")
+    public String editarContato(@RequestParam(value = "email", required = true) String email, Model model) {
+        Contato contato = dao.getContato(email);
+        model.addAttribute("contato", contato);
+         model.addAttribute("contatos", dao.getContatos());
         return "contatosList";
     }
     

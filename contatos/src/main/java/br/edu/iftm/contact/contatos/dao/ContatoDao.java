@@ -36,6 +36,19 @@ public class ContatoDao {
 						new Object[]{"%"+nome+"%"});
 	}
 
+	public Contato getContato(String email) {
+		String sql = "select  email,nome from tb_contato where email = ?";
+
+		List<Contato> contatos=  db.query(sql,
+		                new BeanPropertyRowMapper<>(Contato.class),
+						new Object[]{email});
+		if (contatos != null && contatos.size() > 0) {
+			return contatos.get(0);
+		} else {
+			return null;
+		}
+	}
+
 	public void inserirContato(Contato contato) {
 		String sql = "insert into tb_contato(email,nome) values(?,?)";
 
@@ -53,6 +66,8 @@ public class ContatoDao {
 
 		db.update(sql,new Object[]{email});
 	}
+
+	
 	
 
 

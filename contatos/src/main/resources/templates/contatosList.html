@@ -25,6 +25,8 @@
                <tr th:each="contato : ${contatos}">
                     <td th:text="${contato.nome}"></td>
                     <td th:text="${contato.email}"></td>
+                    <td><a th:href="@{'/editarContato?email=' + ${contato.email}}">Editar</a></td>
+                    <td><a th:href="@{'/excluirContato?email=' + ${contato.email}}">Excluir</a></td>
                </tr>
             </tbody>
           </table>
