@@ -20,6 +20,7 @@ public class ContatoController {
     public String getContatos(Model model) {
         model.addAttribute("contato",new Contato());
         model.addAttribute("contatos",dao.getContatos());
+        model.addAttribute("edit",false);
         return "contatosList";
     }
 
@@ -39,6 +40,7 @@ public class ContatoController {
     public String getContatos(@RequestParam(value = "nome", required = true) String nome, Model model) {
         model.addAttribute("contatos",dao.getContatos(nome));
         model.addAttribute("contato",new Contato());
+        model.addAttribute("edit",false);
         return "contatosList";
     }
 
@@ -53,6 +55,7 @@ public class ContatoController {
         Contato contato = dao.getContato(email);
         model.addAttribute("contato", contato);
          model.addAttribute("contatos", dao.getContatos());
+         model.addAttribute("edit",true);
         return "contatosList";
     }
     

@@ -34,7 +34,7 @@
           <form method="POST" action="contatos" th:object="${contato}">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Endereço de Email</label>
-                <input type="email" th:field="*{email}" class="form-control" name="email" aria-describedby="emailHelp">
+                <input type="email" th:field="*{email}" class="form-control" th:disabled="${edit == true}" name="email" aria-describedby="emailHelp">
                 <div id="emailHelp" class="form-text">Não compartilhamos seu email com ninguém.</div>
             </div>
             <div class="mb-3">
