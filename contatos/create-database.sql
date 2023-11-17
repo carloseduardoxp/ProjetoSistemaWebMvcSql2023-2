@@ -15,3 +15,8 @@ insert into tb_contato values ('carloseduardodantas@iftm.edu.br','Carlos Eduardo
 insert into tb_contato values ('angoti@iftm.edu.br','Edson Angoti');
 
 select email,nome from tb_contato;
+
+create table tb_login( 
+   usuario varchar(255) primary key,
+   senha varchar(255)
+);
