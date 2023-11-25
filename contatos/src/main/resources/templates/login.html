@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="th:href=@{css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
     <title>Login</title>
 </head>
 <body>
@@ -17,8 +17,8 @@
             <h6 th:text="${mensagem}"> </h6>
         </form>
 
-        <p><a href="login/cadastro.html" class="signup-link">Ainda não tem cadastro? Clique aqui para se cadastrar.</a></p>
+        <p><a href="/login/telaNovoUsuario" class="signup-link">Ainda não tem cadastro? Clique aqui para se cadastrar.</a></p>
     </div>
-    <script src="th:href=@{/js/index.js}"></script>
+    <script th:src="@{/js/index.js}"></script>
 </body>
 </html>

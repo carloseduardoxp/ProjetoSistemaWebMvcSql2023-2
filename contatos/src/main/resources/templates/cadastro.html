@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/jAlertWifi.css">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/jAlertWifi.css}">
     <title>Cadastro</title>
 </head>
 <body>
@@ -20,7 +20,7 @@
 
         <p><a href="/" class="signup-link">Faça login</a></p>
     </div>
-    <script src="js/cadastrar.js"></script>
-    <script src="js/jAlertWifi.js"></script>
+    <script th:src="@{/js/cadastrar.js}"></script>
+    <script th:src="@{/js/jAlertWifi.js}"></script>
 </body>
 </html>
