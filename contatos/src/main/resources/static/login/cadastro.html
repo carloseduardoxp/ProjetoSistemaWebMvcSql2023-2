@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/jAlertWifi.css">
+    <title>Cadastro</title>
+</head>
+<body>
+    <div class="cadastro-container">
+        <h2>Cadastro</h2>
+        <form method="POST" action="/login/novoUsuario">
+            <input type="text" id="usuario" name="usuario" required placeholder="Usuário">
+            <input type="password" id="senha" name="senha" required placeholder="Senha">
+            <input type="password" id="txtCheckPwd" name="confirmaSenha" required placeholder="Confirmar Senha">
+
+            <button type="submit" id="btnCadastrar">Cadastrar</button>
+        </form>
+
+        <p><a href="/" class="signup-link">Faça login</a></p>
+    </div>
+    <script src="js/cadastrar.js"></script>
+    <script src="js/jAlertWifi.js"></script>
+</body>
+</html>

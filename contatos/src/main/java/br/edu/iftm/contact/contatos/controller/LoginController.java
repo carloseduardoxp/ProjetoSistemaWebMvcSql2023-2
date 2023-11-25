@@ -36,6 +36,11 @@ public class LoginController {
         return "login";
     }
 
+    @RequestMapping("/login/telaNovoUsuario")
+    public String novo(Model model) {
+        return "cadastro";
+    }
+
     @PostMapping("/login/novoUsuario")
     public String salvarLogin(Login login, Model model) {
         loginService.salvar(login);
