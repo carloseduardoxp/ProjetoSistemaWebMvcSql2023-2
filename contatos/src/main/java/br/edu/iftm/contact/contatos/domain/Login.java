@@ -1,15 +1,21 @@
 package br.edu.iftm.contact.contatos.domain;
 
-import lombok.AllArgsConstructor;
+import java.util.List;
+
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class Login {
 
+    @NonNull
     private String usuario;
+
+    @NonNull
     private String senha;
+
+    private List<Role> roles;
     
 }

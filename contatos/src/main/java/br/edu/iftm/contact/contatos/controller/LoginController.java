@@ -1,12 +1,15 @@
 package br.edu.iftm.contact.contatos.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.edu.iftm.contact.contatos.domain.Login;
+import br.edu.iftm.contact.contatos.domain.Role;
 import br.edu.iftm.contact.contatos.service.LoginService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -28,7 +32,9 @@ public class LoginController {
     private LoginService loginService;
 
     @Autowired
-    private ContatoController contatoController;
+    private MenuController menuController;
+
+    Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @RequestMapping("/")
     public String home(Model model) {
@@ -49,22 +55,27 @@ public class LoginController {
     }
 
     @PostMapping("/login/entrar")
-    public String login(HttpSession session, Login login, Model model) {
-        if (loginService.verificaSenha(login)) {
-            List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ADMIN");
-            Authentication authentication = new UsernamePasswordAuthenticationToken(
-                    login.getUsuario(),
-                    login.getSenha(),
-                    authorities);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
-                    SecurityContextHolder.getContext());
-
-            return contatoController.getContatos(model);
-        } else {
+    public String login(HttpSession session, Login loginDigitado, Model model) {
+        Login loginBanco = loginService.verificaSenha(loginDigitado);
+        if (loginBanco == null) {
             model.addAttribute("mensagem", "Usuario ou senha inválidos");
             return "login";
+        }        
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for (Role role: loginBanco.getRoles()) {
+            logger.info("Registrando a role "+role.getNome()+" para o usuário logado "+loginBanco.getUsuario());
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getNome()));
         }
+            
+        Authentication authentication = new UsernamePasswordAuthenticationToken(
+                    loginBanco.getUsuario(),
+                    loginBanco.getSenha(),
+                    authorities);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
+                    SecurityContextHolder.getContext());
+
+        return menuController.getMenus(model,loginBanco.getRoles());        
     }
 
     @RequestMapping("/login/sair")
