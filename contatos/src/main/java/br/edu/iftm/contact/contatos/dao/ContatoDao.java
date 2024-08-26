@@ -42,7 +42,7 @@ public class ContatoDao {
 		List<Contato> contatos=  db.query(sql,
 		                new BeanPropertyRowMapper<>(Contato.class),
 						email);
-		if (contatos != null && contatos.isEmpty()) {
+		if (contatos != null && !contatos.isEmpty()) {
 			return contatos.get(0);
 		} else {
 			return null;
